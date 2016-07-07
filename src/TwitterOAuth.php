@@ -17,6 +17,7 @@ class TwitterOAuth extends Config
 {
     const API_VERSION = '1.1';
     const API_HOST = 'https://api.twitter.com';
+    const ADS_HOST = 'https://ads-api.twitter.com';
     const UPLOAD_HOST = 'https://upload.twitter.com';
     const UPLOAD_CHUNK = 40960; // 1024 * 40
 
