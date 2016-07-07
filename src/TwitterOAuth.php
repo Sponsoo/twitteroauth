@@ -22,15 +22,15 @@ class TwitterOAuth extends Config
     const UPLOAD_CHUNK = 40960; // 1024 * 40
 
     /** @var Response details about the result of the last request */
-    private $response;
+    protected $response;
     /** @var string|null Application bearer token */
-    private $bearer;
+    protected $bearer;
     /** @var Consumer Twitter application details */
-    private $consumer;
+    protected $consumer;
     /** @var Token|null User access token details */
-    private $token;
+    protected $token;
     /** @var HmacSha1 OAuth 1 signature type used by Twitter */
-    private $signatureMethod;
+    protected $signatureMethod;
 
     /**
      * Constructor
@@ -298,7 +298,7 @@ class TwitterOAuth extends Config
      *
      * @return array|object
      */
-    private function http($method, $host, $path, array $parameters)
+    protected function http($method, $host, $path, array $parameters)
     {
         $this->resetLastResponse();
         $url = sprintf('%s/%s/%s.json', $host, self::API_VERSION, $path);
@@ -319,7 +319,7 @@ class TwitterOAuth extends Config
      * @return string
      * @throws TwitterOAuthException
      */
-    private function oAuthRequest($url, $method, array $parameters)
+    protected function oAuthRequest($url, $method, array $parameters)
     {
         $request = Request::fromConsumerAndToken($this->consumer, $this->token, $method, $url, $parameters);
         if (array_key_exists('oauth_callback', $parameters)) {
@@ -346,7 +346,7 @@ class TwitterOAuth extends Config
      * @return string
      * @throws TwitterOAuthException
      */
-    private function request($url, $method, $authorization, array $postfields)
+    protected function request($url, $method, $authorization, array $postfields)
     {
         /* Curl settings */
         $options = [
